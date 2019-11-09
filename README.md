@@ -14,6 +14,10 @@ secure handling of cryptocurrency keys, see those sources.
 
 ## How to Use
 
+IMPORTANT NOTE: Make sure you test any keys you generate to make sure they
+work and you can get money out of them before you put significant amounts of
+money under their control.
+
 The way you pick random numbers (also known as entropy) for passwords, keys,
 etc is very important to their security.  Machines tend to be really good at
 being predictable and doing the same thing over and over again and not so good
