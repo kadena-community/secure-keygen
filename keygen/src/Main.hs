@@ -7,8 +7,10 @@ module Main where
 import           Control.Monad
 import           Control.Monad.IO.Class
 import           Control.Monad.Trans.State
+import           Crypto.Error
 import           Crypto.PubKey.Ed25519
 import           Crypto.Random.Types
+import qualified Data.ByteString.Base64.URL as B64
 import           Data.ByteArray (ByteArray)
 import qualified Data.ByteArray as BA
 import           Data.ByteArray.Encoding
@@ -28,6 +30,20 @@ import           System.IO
 import           Text.PrettyPrint.ANSI.Leijen (string)
 import           Text.Printf
 ------------------------------------------------------------------------------
+
+verifySig
+  :: ByteString
+  -- ^ Public key in hex
+  -> ByteString
+  -- ^ Signature in hex
+  -> ByteString
+  -- ^ base64url-encoded message
+  -> Bool
+verifySig keyHex sigHex msgBase64 = verify pubkey msg sig
+  where
+    msg = B64.decodeLenient msgBase64
+    CryptoPassed pubkey = publicKey $ LB.toStrict $ toLazyByteString $ hexToRaw keyHex
+    CryptoPassed sig = signature $ LB.toStrict $ toLazyByteString $ hexToRaw sigHex
 
 instance ByteArray ba => MonadRandom (StateT ba Identity) where
     getRandomBytes n = StateT $ \bs ->
