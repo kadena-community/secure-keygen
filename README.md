@@ -12,7 +12,7 @@ These tools were inspired by
 Protocol](https://glacierprotocol.org/) For more in-depth information about
 secure handling of cryptocurrency keys, see those sources.
 
-## How to Use
+## Generating Secure Keys
 
 IMPORTANT NOTE: Make sure you test any keys you generate to make sure they
 work and you can get money out of them before you put significant amounts of
@@ -27,6 +27,8 @@ entropy is to generate it yourself using a good physical source such as
 dice](https://www.amazon.com/X-lion-Grade-Casino-Purple-Yellow/dp/B07RLTF7W1/ref=sr_1_3?dchild=1&keywords=casino+grade+dice&qid=1573337904&sr=8-3).
 Regular dice have biases and are not good enough when security really matters.
 Casino grade dice are carefully manufactured to be as unbiased as possible.
+
+### Entropy from Dice
 
 This package provides a tool called `keygen` that gives you everything you
 need to generate high quality entropy from standard 6-sided casino dice.  It
@@ -49,6 +51,16 @@ yields 5 bits of entropy (2^5 = 32 and there are 36 different ways to roll two
 dice). Therefore you will need to make at least 103 dice rolls to generate one
 key. This library errs on the side of conservatism so depending on how they land
 you may need to do a few more rolls.
+
+### Entropy from `/dev/urandom`
+
+If for some reason you cannot use dice, you can still use this tool to
+generate keys from any other source of entropy.  Here's how you can generate
+keys using `/dev/urandom` as your source of entropy.
+
+```
+dd if=/dev/urandom bs=32 count=1 | result/bin/keygen keys
+```
 
 ## FAQ
 
