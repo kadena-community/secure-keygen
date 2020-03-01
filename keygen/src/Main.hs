@@ -98,8 +98,8 @@ main = do
       HexToEntropy -> hexToEntropyFile
       MakeKeyPair -> do
         sk <- supplyEntropy generateSecretKey <$> B.hGetContents stdin
-        CB.putStrLn $ "Secret: " <> convertToBase Base16 sk
-        CB.putStrLn $ "Public: " <> convertToBase Base16 (toPublic sk)
+        CB.putStrLn $ "public: " <> convertToBase Base16 (toPublic sk)
+        CB.putStrLn $ "secret: " <> convertToBase Base16 sk
   where
     opts = info (commandOpt <**> helper) mods
     mods = progDescDoc $ Just $ string $ unlines
