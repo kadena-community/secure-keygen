@@ -55,6 +55,8 @@ jobs:
         key: ${{ matrix.os }}-${{ matrix.ghc }}-4-cabal
 
     # Build
+    - name: Change to project directory
+      run: cd keygen
     - name: Update package database
       run: cabal update
     - name: Display outdated packages
