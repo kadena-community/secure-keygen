@@ -55,28 +55,28 @@ jobs:
         key: ${{ matrix.os }}-${{ matrix.ghc }}-4-cabal
 
     # Build
-    - name: Change to project directory
-      run: cd keygen
     - name: Update package database
+      working-directory: ./keygen
       run: cabal update
     - name: Display outdated packages
+      working-directory: ./keygen
       run: cabal outdated
     - name: Install build dependencies
+      working-directory: ./keygen
       run: cabal build --only-dependencies
     - name: Build
+      working-directory: ./keygen
       run: cabal build
 
     # Upload artifacts
     - name: Copy build artifact
+      working-directory: ./keygen
       run: cp `cabal list-bin exe:secure-keygen` .
     - name: Stripping binary
-      run: strip secure-keygen
+      working-directory: ./keygen
+      run: strip keygen
     - uses: actions/upload-artifact@v2
+      working-directory: ./keygen
       with:
         name: secure-keygen-build-${{ matrix.os }}
-        path: secure-keygen
-
-    # Test
-    - name: Test
-      run: cabal v2-test
-
+        path: keygen
