@@ -12,7 +12,6 @@ maintainer:          mightybyte@gmail.com
 -- category:
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
-Tested-With:         GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.2, GHC == 9.2.1
 
 executable keygen
   main-is:             Main.hs
