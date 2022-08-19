@@ -18,7 +18,7 @@ executable keygen
   -- other-modules:
   -- other-extensions:
   build-depends:
-    base                 >= 4.8 && < 4.13,
+    base                 >= 4.8 && < 5,
     ansi-wl-pprint       >= 0.6.9 && < 0.7,
     base64-bytestring    >= 1.0 && < 1.1,
     base16-bytestring    >= 0.1 && < 0.2,
