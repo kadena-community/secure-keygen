@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-20.04
     defaults:
       run:
-        working-directory: ./keygen
+        working-directory: ./keychain
     timeout-minutes:
       60
     container:
