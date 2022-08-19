@@ -20,6 +20,9 @@ jobs:
   linux:
     name: Haskell-CI - Linux - ${{ matrix.compiler }}
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./keygen
     timeout-minutes:
       60
     container:
