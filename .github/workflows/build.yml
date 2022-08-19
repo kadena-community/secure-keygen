@@ -70,7 +70,7 @@ jobs:
 
     # Upload artifacts
     - name: Copy build artifact
-      run: cp `cabal list-bin exe:secure-keygen` .
+      run: cp `cabal list-bin exe:keygen` .
     - name: Stripping binary
       run: strip keygen
     - uses: actions/upload-artifact@v2
