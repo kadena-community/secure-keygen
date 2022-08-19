@@ -6,6 +6,10 @@ jobs:
   build:
     name: Build master with ${{ matrix.ghc }} / ${{ matrix.cabal }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: ./keygen
+
     strategy:
       fail-fast: false
       matrix:
@@ -56,27 +60,20 @@ jobs:
 
     # Build
     - name: Update package database
-      working-directory: ./keygen
       run: cabal update
     - name: Display outdated packages
-      working-directory: ./keygen
       run: cabal outdated
     - name: Install build dependencies
-      working-directory: ./keygen
       run: cabal build --only-dependencies
     - name: Build
-      working-directory: ./keygen
       run: cabal build
 
     # Upload artifacts
     - name: Copy build artifact
-      working-directory: ./keygen
       run: cp `cabal list-bin exe:secure-keygen` .
     - name: Stripping binary
-      working-directory: ./keygen
       run: strip keygen
     - uses: actions/upload-artifact@v2
-      working-directory: ./keygen
       with:
         name: secure-keygen-build-${{ matrix.os }}
-        path: keygen
+        path: keygen/keygen
